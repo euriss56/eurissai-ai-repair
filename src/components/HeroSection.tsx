@@ -7,7 +7,7 @@ const HeroSection = () => {
       {/* Background image */}
       <img
         src={heroImg}
-        alt="Atelier de réparation mobile EurissAI"
+        alt="Atelier de réparation mobile EurissGSM"
         className="absolute inset-0 w-full h-full object-cover"
       />
       {/* Dark overlay */}

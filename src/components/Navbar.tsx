@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#accueil" className="font-heading text-2xl font-bold text-gradient">
-          EurissAI
+          EurissGSM
         </a>
 
         {/* Desktop */}

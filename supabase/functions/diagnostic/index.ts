@@ -37,7 +37,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Tu es un expert en réparation de téléphones portables pour l'entreprise EurissAI. 
+            content: `Tu es un expert en réparation de téléphones portables pour l'entreprise EurissGSM. 
 Tu analyses les problèmes décrits par les clients et fournis un diagnostic clair et professionnel.
 
 Réponds TOUJOURS en français avec ce format :
