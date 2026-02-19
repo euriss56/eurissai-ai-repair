@@ -1,8 +1,8 @@
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 
 const contactInfo = [
-  { icon: MapPin, label: "Adresse", value: "123 Rue de la Réparation, Paris" },
-  { icon: Phone, label: "Téléphone", value: "+33 6 12 34 56 78" },
+  { icon: MapPin, label: "Adresse", value: "Abomey-Calavi, Bénin" },
+  { icon: Phone, label: "Téléphone", value: "+229 41 67 57 84" },
   { icon: Clock, label: "Horaires", value: "Lun-Sam : 9h - 19h" },
 ];
 
