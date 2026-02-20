@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Loader2, Send } from "lucide-react";
+import { Bot, Loader2, Send, Cpu, Zap, Shield } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 const DIAGNOSTIC_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/diagnostic`;
 
@@ -83,7 +84,6 @@ const DiagnosticSection = () => {
         }
       }
 
-      // Final flush
       if (textBuffer.trim()) {
         for (let raw of textBuffer.split("\n")) {
           if (!raw) continue;
@@ -112,48 +112,93 @@ const DiagnosticSection = () => {
   };
 
   return (
-    <section id="diagnostic" className="py-24 px-6">
-      <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
-            <Bot className="text-primary" size={20} />
+    <section id="diagnostic" className="py-28 px-6 relative">
+      {/* Neon line separator */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
+
+      <div className="container mx-auto max-w-3xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
+        >
+          <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 mb-6">
+            <Bot className="text-accent" size={18} />
             <span className="text-sm font-body text-muted-foreground">Propulsé par l'IA</span>
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-4 glitch" data-text="Diagnostic Intelligent">
             Diagnostic <span className="text-gradient">Intelligent</span>
           </h2>
-          <p className="text-muted-foreground">
-            Décrivez le problème de votre téléphone et notre IA vous donnera un premier diagnostic
+          <p className="text-muted-foreground text-lg max-w-lg mx-auto">
+            Décrivez votre problème et notre IA génère un diagnostic instantané
           </p>
-        </div>
+        </motion.div>
 
-        <div className="glass rounded-2xl p-8 space-y-6">
-          <Textarea
-            placeholder="Ex: Mon iPhone ne charge plus, l'écran clignote quand je branche le câble..."
-            value={problem}
-            onChange={(e) => setProblem(e.target.value)}
-            className="min-h-[120px] bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground resize-none"
-          />
+        {/* Feature pills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-3 mb-10"
+        >
+          {[
+            { icon: Cpu, text: "IA avancée" },
+            { icon: Zap, text: "Résultat instantané" },
+            { icon: Shield, text: "100% gratuit" },
+          ].map((pill) => (
+            <div key={pill.text} className="flex items-center gap-2 glass rounded-full px-4 py-2 text-xs text-muted-foreground">
+              <pill.icon size={14} className="text-primary" />
+              {pill.text}
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="glass-strong rounded-2xl p-8 md:p-10 space-y-6"
+        >
+          <div className="relative">
+            <Textarea
+              placeholder="Ex: Mon iPhone ne charge plus, l'écran clignote quand je branche le câble..."
+              value={problem}
+              onChange={(e) => setProblem(e.target.value)}
+              className="min-h-[130px] bg-secondary/40 border-primary/10 text-foreground placeholder:text-muted-foreground resize-none rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all duration-300 text-base"
+            />
+          </div>
 
           <Button
             onClick={handleAnalyze}
             disabled={loading || !problem.trim()}
-            className="w-full py-6 text-lg glow-primary transition-all duration-300 hover:animate-pulse-glow"
+            className="w-full py-7 text-lg bg-gradient-neon text-primary-foreground glow-primary transition-all duration-300 hover:animate-pulse-glow rounded-xl font-semibold"
           >
             {loading ? (
-              <Loader2 className="animate-spin mr-2" size={20} />
+              <Loader2 className="animate-spin mr-2" size={22} />
             ) : (
-              <Send className="mr-2" size={20} />
+              <Send className="mr-2" size={22} />
             )}
-            {loading ? "Analyse en cours..." : "Analyser"}
+            {loading ? "Analyse en cours..." : "Analyser mon problème"}
           </Button>
 
           {result && (
-            <div className="glass rounded-xl p-6 animate-fade-up whitespace-pre-line text-sm text-foreground leading-relaxed">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="glass rounded-xl p-6 whitespace-pre-line text-sm text-foreground leading-relaxed border border-primary/10"
+            >
               {result}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
