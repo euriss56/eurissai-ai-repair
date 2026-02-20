@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -10,21 +10,27 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-strong shadow-lg" : "bg-transparent"}`}>
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         <a href="#accueil" className="font-heading text-2xl font-bold text-gradient">
           EurissGSM
         </a>
 
-        {/* Desktop */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-body text-sm text-muted-foreground transition-colors duration-300 hover:text-primary hover:glow-primary-sm"
+                className="font-body text-sm text-muted-foreground transition-colors duration-300 hover:text-primary relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-neon after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -32,7 +38,6 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setOpen(!open)}
@@ -42,9 +47,8 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden glass border-t border-border animate-fade-in">
+        <div className="md:hidden glass-strong border-t border-border/50 animate-fade-in">
           <ul className="flex flex-col items-center gap-6 py-6">
             {navLinks.map((link) => (
               <li key={link.href}>
