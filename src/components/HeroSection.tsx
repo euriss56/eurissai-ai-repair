@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import ParticlesBackground from "./ParticlesBackground";
+import heroImg from "@/assets/hero.jpg";
 
 const HeroSection = () => {
   return (
@@ -9,8 +10,11 @@ const HeroSection = () => {
       id="accueil"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Dark base */}
-      <div className="absolute inset-0 bg-background" />
+      {/* Hero background image */}
+      <div className="absolute inset-0">
+        <img src={heroImg} alt="Réparation mobile EurissGSM" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
 
       {/* Neon gradient orbs */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[120px] animate-glow-pulse" />
