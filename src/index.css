@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  .dark {
     --background: 240 15% 5%;
     --foreground: 0 0% 95%;
 
@@ -52,6 +53,51 @@
     --glass-bg: 240 15% 10%;
     --glass-border: 270 40% 30%;
   }
+
+  .light {
+    --background: 240 20% 97%;
+    --foreground: 240 15% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 15% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 15% 10%;
+
+    --primary: 270 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 15% 92%;
+    --secondary-foreground: 240 15% 15%;
+
+    --muted: 240 15% 90%;
+    --muted-foreground: 240 10% 40%;
+
+    --accent: 320 80% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 85%;
+    --input: 240 15% 85%;
+    --ring: 270 80% 55%;
+
+    --sidebar-background: 240 15% 95%;
+    --sidebar-foreground: 240 15% 10%;
+    --sidebar-primary: 270 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 15% 90%;
+    --sidebar-accent-foreground: 240 15% 10%;
+    --sidebar-border: 240 15% 85%;
+    --sidebar-ring: 270 80% 55%;
+
+    --neon-violet: 270 80% 55%;
+    --neon-pink: 320 80% 50%;
+    --neon-blue: 220 80% 55%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 270 30% 75%;
+  }
 }
 
 @layer base {
@@ -70,17 +116,27 @@
 
 @layer utilities {
   .glass {
-    background: hsla(240, 15%, 10%, 0.4);
+    background: hsl(var(--glass-bg) / 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsla(270, 40%, 40%, 0.15);
+    border: 1px solid hsl(var(--glass-border) / 0.15);
+  }
+
+  .light .glass {
+    background: hsl(var(--glass-bg) / 0.7);
+    border: 1px solid hsl(var(--glass-border) / 0.25);
   }
 
   .glass-strong {
-    background: hsla(240, 15%, 10%, 0.7);
+    background: hsl(var(--glass-bg) / 0.7);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border: 1px solid hsla(270, 40%, 40%, 0.25);
+    border: 1px solid hsl(var(--glass-border) / 0.25);
+  }
+
+  .light .glass-strong {
+    background: hsl(var(--glass-bg) / 0.9);
+    border: 1px solid hsl(var(--glass-border) / 0.35);
   }
 
   .glow-primary {

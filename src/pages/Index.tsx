@@ -6,10 +6,15 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
+import { useTheme } from "@/hooks/use-theme";
 
 const Index = () => {
+  // Initialize theme on mount
+  useTheme();
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <Navbar />
       <HeroSection />
       <ServicesSection />
@@ -18,6 +23,7 @@ const Index = () => {
       <ContactSection />
       <Footer />
       <WhatsAppButton />
+      <BackToTop />
     </div>
   );
 };
