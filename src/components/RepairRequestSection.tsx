@@ -71,7 +71,7 @@ const RepairRequestSection = () => {
     const message = encodeURIComponent(
       `Bonjour EurissGSM 👋\n\nJe souhaite faire réparer mon téléphone :\n📱 Marque : ${brand}\n📋 Modèle : ${model}\n🔧 Problème(s) : ${problemLabels}\n📝 Détails : ${details || "Aucun"}\n👤 Nom : ${name}\n📞 Tél : ${phone}`
     );
-    window.open(`https://wa.me/22990000000?text=${message}`, "_blank");
+    window.open(`https://wa.me/22941675784?text=${message}`, "_blank");
     setSubmitted(true);
   };
 
