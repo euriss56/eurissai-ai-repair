@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import ParticlesBackground from "./ParticlesBackground";
+import OptimizedImage from "./OptimizedImage";
 import heroImg from "@/assets/hero.jpg";
 
 const HeroSection = () => {
@@ -12,7 +13,7 @@ const HeroSection = () => {
     >
       {/* Hero background image */}
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Réparation mobile EurissGSM" className="w-full h-full object-cover" />
+        <OptimizedImage src={heroImg} alt="Réparation mobile EurissGSM" className="w-full h-full object-cover" wrapperClassName="w-full h-full" />
         <div className="absolute inset-0 bg-background/80" />
       </div>
 

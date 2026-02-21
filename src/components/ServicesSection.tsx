@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Smartphone, Battery, Unlock, Camera, Droplets, Plug } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 import serviceScreen from "@/assets/service-screen.jpg";
 import serviceBattery from "@/assets/service-battery.jpg";
 import serviceCharge from "@/assets/service-charge.jpg";
@@ -64,7 +65,7 @@ const ServicesSection = () => {
 
               {/* Service image */}
               <div className="relative z-10 -mx-7 -mt-7 mb-5 h-36 overflow-hidden rounded-t-2xl">
-                <img src={service.img} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <OptimizedImage src={service.img} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" wrapperClassName="w-full h-full" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
               </div>
 
